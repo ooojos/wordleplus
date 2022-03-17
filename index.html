@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body {
+			background-color: lightblue;
+			font-family: courier;
+			font-size: 24pt;
+		}
+		.game {
+			background-color: white;
+			border-style: double;
+			padding: 10px;
+			width: 700px;
+			margin: auto;
+			text-align: center;
+		}
+		
+		.board{
+			text-align: center;
+		}
+		
+		.title{
+			text-align: center;
+		}
+		
+		.grid{
+			display:grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			border-style: solid;
+		}
+		
+		.grid div:nth-child(even){
+		}
+		.grid div:nth-child(odd){
+		}
+		
+		#x00{
+			background-color: lightblue;
+		}
+		
+	</style>
+	<title>Wordle+</title>
+</head>
+
+
+<body>
+	<div class="game">
+	<h1>Wordle+</h1>
+	(please use all caps :) )
+
+	<p id="glog">?</p>
+
+
+	<p id="win"></p>
+
+
+
+	<input type="text" id="guess" name="guess">
+	<button type="button" onclick="guess()">Guess!</button>
+
+	<p id="message"></p>
+	</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+var clog = "";
+function guess() {
+	var g = document.getElementById('guess').value;
+
+	if(g.length != 8){document.getElementById("message").innerHTML = "Wrong Length!"}
+	else{
+
+
+	var g0 = g.charAt(0);
+	var g1 = g.charAt(1);
+	var g2 = g.charAt(2);
+	var g3 = g.charAt(3);
+	var g4 = g.charAt(4);
+	var g5 = g.charAt(5);
+	var g6 = g.charAt(6);
+	var g7 = g.charAt(7);
+
+
+	var target = "FEEZYDAY";
+	var t0 = "F";
+	var t1 = "E";
+	var t2 = "E";
+	var t3 = "Z";
+	var t4 = "Y";
+	var t5 = "D";
+	var t6 = "A";
+	var t7 = "Y";
+
+	clog = clog + "<br>"
+
+	for(let i = 0; i < 8; i++) {
+		clog = clog + " ";
+		if(g.charAt(i) == target.charAt(i)){
+				clog = clog + "<span style=\"color:green\">" + g.charAt(i) + "</span>";
+		}
+		else if (target.includes(g.charAt(i))){
+			clog = clog + "<span style=\"color:yellow\">" + g.charAt(i) + "</span>";
+		}
+		else{
+			clog = clog+g.charAt(i);
+		}
+	}
+	console.log(clog);
+	document.getElementById("glog").innerHTML = clog;
+
+	if(g == "FEEZYDAY"){
+		document.getElementById("win").innerHTML =	"<br>+ + + + + + + + <br><br>I K Z N N A T Q<br><br>	= = = = = = = = <br><br>	? ? ? ? ? ? ? ?<br>";
+		document.body.style.backgroundColor = "green";
+	}
+
+
+
+	document.getElementById("message").innerHTML = "You Guessed!:  " + g;	
+	}	
+
+
+}
+</script>
+
+
+</body>
